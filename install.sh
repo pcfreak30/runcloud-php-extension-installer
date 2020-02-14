@@ -31,7 +31,16 @@ for version in "${PHP_VERSION[@]}"; do
 	/RunCloud/Packages/php"${version}"rc/bin/phpize
 	./configure --with-libdir=lib64 CFLAGS='-O2 -fPIE -fstack-protector-strong -Wformat -Werror=format-security -Wall -pedantic -fsigned-char -fno-strict-aliasing' --with-php-config=/RunCloud/Packages/php"$version"rc/bin/php-config
 	make install
-	echo "extension=$EXTENSION.so" > /etc/php"$version"rc/conf.d/"$EXTENSION".ini
+
+	EXT_CONFIG=""
+
+	if [ "$EXTENSION" == "xdebug" ]; then
+	  EXT_CONFIG="zend_"
+	fi
+
+	EXT_CONFIG="${EXT_CONFIG}extension=$EXTENSION.so"
+
+	echo "$EXT_CONFIG" > /etc/php"$version"rc/conf.d/"$EXTENSION".ini
 done
 
 rm /tmp/"$EXTENSION"-"$VERSION" -rf
