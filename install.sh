@@ -20,6 +20,8 @@ if [ -z "$VERSION" ]; then
   exit
 fi
 
+DEBIAN_FRONTEND=noninteractive  apt-get install -qq  automake autoconf  < /dev/null > /dev/null
+
 cd /tmp || (echo Failed to move to tmp && exit)
 wget https://pecl.php.net/get/"$EXTENSION"-"$VERSION".tgz
 tar -zxvf "$EXTENSION"-"$VERSION".tgz
