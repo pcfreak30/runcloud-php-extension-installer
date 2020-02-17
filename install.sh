@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Version: 0.1.1
+# Version: 0.1.2
 
 EXTENSION=$1
 VERSION=$2
