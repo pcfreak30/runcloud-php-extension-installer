@@ -23,7 +23,7 @@ fi
 DEBIAN_FRONTEND=noninteractive  apt-get install -qq  automake autoconf  < /dev/null > /dev/null
 
 cd /tmp || (echo Failed to move to tmp && exit)
-wget https://pecl.php.net/get/"$EXTENSION"-"$VERSION".tgz
+wget https://pecl.php.net/get/"$EXTENSION"-"$VERSION".tgz -N
 tar -zxvf "$EXTENSION"-"$VERSION".tgz
 cd "$EXTENSION-$VERSION" || (echo Failed to move to xdebug build folder && exit)
 
